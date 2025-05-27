@@ -1,0 +1,11 @@
+node_modules
+src/test
+.eslintrc.json
+nodemon.json
+.env
+.git
+.gitignore
+Dockerfile
+README.md
+jest.config.js
+src/seeders

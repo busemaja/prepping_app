@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb:11.7
+    container_name: krisguiden-mariadb
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: krisguiden-app
+    restart: unless-stopped
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+    env_file:
+    - .env
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    depends_on:
+      - mariadb
+    entrypoint: ["./wait-for-it.sh", "mariadb:3306", "--", "npm", "start"]
+
+
+volumes:
+  mariadb-data:

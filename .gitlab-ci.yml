@@ -1,0 +1,79 @@
+.before_script_ssh_setup: &before_script_ssh_setup
+  # Ensure ssh-agent is installed and started, essential for managing SSH keys.
+  # (Change apt-get to yum if using an RPM-based image)
+  - command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )
+
+  # Start the ssh-agent in the background.
+  - eval $(ssh-agent -s)
+
+  # Add the SSH private key stored in the SSH_PRIVATE_KEY variable to the ssh-agent.
+  # Using 'tr' to remove carriage return characters for compatibility with ed25519 keys.
+  # Reference: https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+  # Create the .ssh directory and set the correct permissions.
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+  # Use ssh-keyscan to add the remote server's SSH key to the known_hosts file.
+  # This prevents SSH from prompting for approval of the remote server's key.
+  - ssh-keyscan -H $PRODUCTION_HOST >> ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+
+# Specify the Docker image to be used for the jobs, which supports Docker commands.
+image: docker:27-cli
+
+stages:
+  - test
+  - lint
+  - deploy
+
+run_tests:
+  stage: test
+  image: node:20-slim
+  services:
+    - name: mariadb:11.7
+      alias: db
+  variables:
+    DB_HOST: db
+    DB_PORT: 3306
+    DB_NAME: krisguiden_db
+    DB_USER: krisadmin
+    DB_PASSWORD: $DB_PASSWORD
+    DB_DIALECT: mariadb
+    MARIADB_DATABASE: krisguiden_db
+    MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "yes"
+    MARIADB_USER: krisadmin
+    MARIADB_PASSWORD: $DB_PASSWORD
+    NODE_ENV: test
+  script:
+    - npm install
+    - npm run test:ci
+  only:
+    - dev
+
+lint_code:
+  stage: lint
+  image: node:20-slim
+  script:
+    - npm run lint
+  only:
+    - main
+
+deploy_to_cscloud:
+  stage: deploy
+  environment:
+    name: production
+    url: https://$PRODUCTION_HOST
+  variables:
+    REMOTE_HOST: $PRODUCTION_HOST
+    DOCKER_HOST: ssh://ubuntu@$PRODUCTION_HOST
+  before_script: *before_script_ssh_setup
+  script:
+    - echo "Deploying to production server..."
+    - ssh ubuntu@$PRODUCTION_HOST "cd krisguiden && git pull origin main"
+    - ssh ubuntu@$PRODUCTION_HOST "cd krisguiden && docker compose down"
+    - ssh ubuntu@$PRODUCTION_HOST "cd krisguiden && docker compose -f docker-compose.yml up --build -d"
+  only:
+    - main
+    

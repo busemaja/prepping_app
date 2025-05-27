@@ -1,0 +1,48 @@
+{
+  "name": "krisguiden",
+  "version": "0.8.2",
+  "description": "1DV613 - Krisguiden",
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --inspect --env-file=.env src/server.js",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0",
+    "test": "cross-env NODE_ENV=test npx --node-options=--experimental-vm-modules jest",
+    "test:all": "node --env-file=.env src/test/allTests.js",
+    "test:ci": "node src/test/allTests.js",
+    "seed": "node --env-file=.env src/seeders/seed.js"
+  },
+  "contributors": [
+    "Maria Jansson <mj225er@student.lnu.se>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@lnu/json-js-cycle": "^2.0.5",
+    "bcryptjs": "^3.0.2",
+    "connect-session-sequelize": "^7.1.7",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mariadb": "^3.4.2",
+    "morgan": "^1.10.0",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.1"
+  }
+}
