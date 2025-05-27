@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <div class="dashboard-welcome">
+    <h1>Välkommen, <%= viewData?.username %>!</h1>
+    <p>Nedan finner du dina checklistor. Håll koll på vad du har hemma genom att bocka i eller ur de saker som är på plats, och klicka sen på "Spara".</p>
+  </div>
+
+  <div class="dashboard-checklists">
+  <% viewData.checklists.forEach(checklist => { %>
+    <div class="checklist">
+      <h2><%= checklist.name %></h2>
+        <% const cleanName = checklist.name.toLowerCase().normalize("NFD").replace(/[^a-z]/g, ""); %>
+        <form method="POST" action="checklist/<%= cleanName %>">
+        <table>
+          <% Object.entries(checklist.data).forEach(([key, value]) => {
+            if (key !== 'id' && key !== 'userId' && typeof value === 'boolean') {
+              const readable = key.replace(/_/g, ' ').toLowerCase().replace(/^\w/, c => c.toUpperCase());
+              const uniqueKey = `${cleanName}_${key}`;
+          %>
+            <tr>
+              <td>
+                <input type="checkbox" id="<%= uniqueKey %>" name="<%= uniqueKey %>" <%= value ? 'checked' : '' %>>
+              </td>
+              <td>
+                <label for="<%= uniqueKey %>"><%= readable %></label>
+              </td>
+            </tr>
+          <% }}) %>
+        </table>
+        <button type="submit">Spara</button>
+      </form>
+    </div>
+  <% }) %>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krisguiden</title>
+  <base href="<%= baseURL %>/" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body data-app-base="<%= baseURL %>">
+  <%- include('../partials/header') %>
+  <%- include('../partials/flash') %>
+    <main id="mainElement">
+      <%- body %>    
+    </main>
+  <%- include('../partials/footer') %>
+  <script src="js/navigation.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<div id="prepare-home-view">
+  <h1>Förbered dig på kris.</h1>
+  <h2>Välj typ av kris:</h2>
+  <div id="view-buttons">
+    <% const prepareUrl = baseURL + '/redo' %>
+    <a href="<%= prepareUrl %>/brand" class="view-button">
+      <img src="images/fire.png" alt="En tecknad bild av eld">
+      <span class="alt-text">BRAND</span>
+    </a>
+    <a href="<%= prepareUrl %>/storm" class="view-button">
+      <img src="images/storm.png" alt="En tecknad bild av stormväder">
+      <span class="alt-text">STORM</span>
+    </a>
+    <a href="<%= prepareUrl %>/stromavbrott" class="view-button">
+      <img src="images/power-outage.png" alt="En tecknad bild av en strömkontakt och ett rött kryss">
+      <span class="alt-text">STRÖMAVBROTT</span>
+    </a>
+    <a href="<%= prepareUrl %>/oversvamning" class="view-button">
+      <img src="images/flood.png" alt="En tecknad bild av ett hus och en bil i översvämning">
+      <span class="alt-text">ÖVERSVÄMNING</span>
+    </a>
+    <p class="view-button-labels">Brand</p>
+    <p class="view-button-labels">Storm</p>
+    <p class="view-button-labels">Strömavbrott</p>
+    <p class="view-button-labels">Översvämning</p>
+  </div>
+</div>

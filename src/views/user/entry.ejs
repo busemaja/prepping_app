@@ -1,0 +1,31 @@
+<div class="user-forms">
+  <!-- Register user -->
+  <form class="auth-form register-form" method="post" action="./konto/register">
+    <h1>Skapa konto</h1>
+    <div class="form-group">
+      <label for="register-username">Välj användarnamn:</label>
+      <input type="text" name="username" id="register-username" placeholder="ScroogeMcDuck" required autofocus />
+    </div>
+    <div class="form-group">
+      <label for="register-password">Välj ett lösenord:</label>
+      <input type="password" name="password" id="register-password" placeholder="************" required />
+      <p>Lösenordet måste bestå av minst 12 tecken.</p>
+    </div>
+    <button type="submit">Skapa</button>
+  </form>
+
+  <!-- Login user -->
+  <form class="auth-form login-form" method="post" action="./konto/login">
+    <h1>Logga in</h1>
+    <div class="form-group">
+      <label for="login-username">Ange användarnamn:</label>
+      <input type="text" name="username" id="login-username" placeholder="ScroogeMcDuck" required autofocus />
+    </div>
+    <div class="form-group">
+      <label for="login-password">Ange lösenord:</label>
+      <input type="password" name="password" id="login-password" placeholder="************" required />
+      <p>Välkommen tillbaka!</p>
+    </div>
+    <button type="submit">Logga in</button>
+  </form>
+</div>

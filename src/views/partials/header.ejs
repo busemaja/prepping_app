@@ -1,0 +1,17 @@
+<header>
+  <div id="headLogo">
+    <a href="<%= baseURL %>">Krisguiden</a>
+  </div>
+  <nav class="main-navigation" aria-label="Huvudmeny">
+    <ul>
+      <li><a href="">Start</a></li>
+      <li><a href="redo">Förbered dig</a></li>
+      <li><a href="akut">AKUT LÄGE</a></li>
+      <li><a href="om">Om sidan</a></li>
+      <li><a href="konto">Konto</a></li>
+      <% if (session.user && hasAccessToken) { %>
+        <li id="logout"><a href="konto/<%= session.user.username %>/logout">Logga ut</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>
