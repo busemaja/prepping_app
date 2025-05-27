@@ -7,6 +7,7 @@ Some parts of the code is borrowed from my earlier projects, and I hope to make 
 
 ## Description
 Krisguiden is a web application designed to help users prepare for and manage various emergency situations, such as fires, floods, storms, and power outages. The app provides checklists, preparation tips, and emergency information to help users stay safe and organized before, during, and after a crisis.
+You can find more details about the project in the wiki, but note that all that documentation is in Swedish.  
 
 ## Installation
 1. Clone the repository:
