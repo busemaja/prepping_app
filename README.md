@@ -1,8 +1,7 @@
 # Krisguiden
 
 ## Project status
-Please note that the entire project has been moved in its entirety from GitLab, and some files and links may be broken or not working due to this.  
-This will be rectified as soon as I can!  
+>Please note that the entire project has been moved in its entirety from GitLab, and some files and links may be broken or not working due to this. This will be rectified as soon as I have some free time.  
 
 The project will be on a hiatus beginning in June 2025 due to studies, but I will try to keep it going during longer free periods.  
 Since the aim of the course in which the project was born was to experience and learn about working in a project setting (like SCRUM for example), there are parts of the code base that is not really up to par (like the error handling) due to time running out. I do plan to fix this though.  
