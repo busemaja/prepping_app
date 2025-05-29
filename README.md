@@ -7,6 +7,8 @@ The project will be on a hiatus beginning in June 2025 due to studies, but I wil
 Since the aim of the course in which the project was born was to experience and learn about working in a project setting (like SCRUM for example), there are parts of the code base that is not really up to par (like the error handling) due to time running out. I do plan to fix this though.  
 Some parts of the code is borrowed from my earlier projects, and I hope to make everything look a bit cleaner and more cohesive in the future.  
 
+You can find the requirment details, product backlog, test specification, and more documentation as well as a video demo in the project Wiki, but please not that everything is written in Swedish.  
+
 ## Description
 Krisguiden is a web application designed to help users prepare for and manage various emergency situations, such as fires, floods, storms, and power outages. The app provides checklists, preparation tips, and emergency information to help users stay safe and organized before, during, and after a crisis.
 You can find more details about the project in the wiki, but note that all that documentation is in Swedish.  
